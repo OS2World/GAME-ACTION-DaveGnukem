@@ -3,7 +3,7 @@ Dave Gnukem is a 2D scrolling platform shooter. It is inspired by and similar to
 
 LICENSE
 ===============
-* GNU GPL V2
+* GNU LGPL
 
 COMPILE TOOLS
 ===============
