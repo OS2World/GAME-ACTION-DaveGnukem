@@ -1,0 +1,153 @@
+
+
+Game features:
+--------------
+
+-	Implement "bonus" as a specific thing, not just a plain score increment
+-	(Some?) monsters should only start updating the first time they appear in (or near?) the view
+-	Implement more features (e.g. grappling hooks)
+-	Switches, buttons
+-	Access card
+-	Add "creator name" to level file format and level editor
+-	Dust effect: fix landing while jumping problem (sometimes will be no dust, if land on level one higher than from which one jumped)
+-	Dust effect: clean up four-puff support, leave one-puff support
+-	Dust effect: dust if jumping and head hits ceiling
+-	HeroSetJumpMode(), I think this will screw up if hero is in midair if picks up boots (jump offset index)
+-	Implement recording/playback of games (e.g. for demo)
+-	Add hero skeleton-when-hurt thingy
+-	Bouncing spiked balls should absorb bullets
+-	Timing on flame-shoot thingies is a little severe
+
+Monsters:
+---------
+
+-	Bunny thing
+-	Flat thing on wheels
+-	Spinning wheel thing with alternating on/off flames that can only be killed when flames are off
+-D	Fire (similar to dumb robot)
+-	Big shooting things
+-	Small floating shooting robot things
+-	Helicopter
+-	Big spinning figure-8 snake-like thingy
+
+Sound:
+------
+
+-	SOUND: Get/produce more sounds
+-	SOUND: Replace existing sounds (current sounds are mostly extremely cheesy)
+-	SOUND: Sounds should mix (currently if a new sound starts the previous one stops)
+-	SOUND: When in KDE, all sounds seem to have a severe latency to play
+
+Input:
+------
+
+-	INPUT: Add joystick support
+-	INPUT: Get rid of DJKEY_ stuff altogether
+
+Load/save game:
+-	Implement loading and saving of games
+-	Should save/load current mission
+-D	If you load powerboots, you still can't jump high
+
+Bullets:
+
+-	Improve bullet graphics
+-D	Need monster bullets
+-D	Bullets sometimes miss robots
+-D	Bullet should stop when it hits solid objects
+-D	Bullet shouldn't "continuous-fire" the way they do
+-D	Implement max firepower
+
+Editor:
+
+-	Improve the level editor
+-	Sort out SDL mouse cursor crap
+-	Sort out flickering in full-screen mode
+-	Don't use alt+mouse-click for ed, KDE steals that rudely
+-D	Ditch the palette stuff completely, calculate sprite display colours from sprite
+
+Documentation:
+
+-	Bring readme up to date
+-	Improve and complete doxygen documentation
+
+General stuff:
+
+-	Create decent levels
+-	Improve the graphics
+-	Improve the levels
+-	Timing problems on WinME (runs at max possible frame rate) (may be fixed with SDL?)
+-D	Slower and jerky in Linux (port to SDL ..)
+-D	Sticky-key problems in Linux (port to SDL ..)
+-D	Port to SDL [Done, but still wrapper layers .. will leave these around till I get sick of them]
+-D	Did I say "port to SDL" ..?
+
+Graphics-related issues:
+
+-	Blit to front buffer blurry on some systems
+-	Hide mouse cursor in Win32
+
+Medium priority:
+-	Make high score list a little harder to edit (although the nature of OpenSource makes this tricky :)
+ 
+Low priority:
+
+Possible optimizations (not (yet) high priority):
+-	Use hardware blits
+-	Array of CThing's should be kept sorted by layer to optimize drawing loops
+-	Fewer layers? I don't seem to be using them all anyway.
+-D	CThing: Draw(): Bounds checking should be done by game, not Draw() function;
+	Draw() should not even get called if out of bounds
+
+Minor bugs, known issues etc:
+
+-	Discovered you don't need to be root to use DGA, you just need
+	access to /dev/mem. Fix up scripts, documentation etc to reflect this.
+
+Other todo:
+-	Make sprite interface more generic, handle multiple sizes etc
+
+-----------------------------------------------------------------------------
+
+DONE
+----
+
+-D	Implement sound (again :)
+-D	Make keys redefinable
+-D	If you die, items picked up during that level only should be removed from inventory. Same with firepower and score.
+-D	"Dust" that gets kicked up as hero lands on ground
+-D	Stationary spiked balls
+-D	End-of-level exit should animate when activated
+-D	Small pop-up spike action bounds should be smaller
+-D	Conveyor belts should probably be "things" too
+-D	If jumping up and hit monster (or anything that hurts??) should be knocked down
+-D	(-1,-1,-1,-1) bounds are overlapping hero
+-D	Implement high score list
+-D	Box with flames when shot
+-D	Dynamite flames should also have flames right in middle
+-D	Fans that stop when shot
+-D	Fans should stop slowly. Also they should spin when shot.
+-D	Can of coke should fly up when shot
+-D	Floating balloon: Should disappear when hit ceiling
+-D	Side flame thrower blocks
+-D	Remove all palette stuff
+-D	Background image for level
+-D	Acme falling block
+-D	Floating balloon
+-D	"Objects" should be "things" ("CCollectable"? No - CPickup)
+-D	Lifts should just be "things" too
+-D	Implement shooting of security cameras
+-D	Implement bouncing spiky ball
+-D	Scores of 0 generate floating score displays
+-D	Doors/keys #0 don't work properly (rewrite messy door code) [Rewritten completely]
+-D	Sometimes you can go through doors (??) [Should be fixed, thanks to complete rewrite of door code]
+-D	Implement turkey (+ shoot) [Did a banana instead]
+-D	CThing: Need a virtual initialization function so that we can generically initialize from list of "extras".
+-D	Implement bonus for collecting G,N,U,K,E,M letters in order
+-D	Implement bonus for shooting all cameras in a level
+-D	Spikes (both big static ones and small pop-up ones)
+-D	Acme falling block: Should disappear when collide with floor (should explode though)
+-D	Remove all own djArray array stuff, convert to STL vector
+-D	Scrap "lives"
+-D	WhyTF do stationary spiked balls show purple on edges? (sprite transparency seems OK)
+-D	Dynamite should fall (done but not tested)

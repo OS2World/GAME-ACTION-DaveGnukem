@@ -1,0 +1,659 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Felix Richter and David Joffe">
+   <meta name="GENERATOR" content="Hand">
+   <title>Dave GNUkem documentation</title>
+</head>
+<body>
+&nbsp;
+<center><table CELLSPACING=0 COLS=2 WIDTH="74%" BGCOLOR="#FFFFCC" >
+<tr ALIGN=CENTER>
+<td COLSPAN="2"><b><font size=+3>Dave GNUkem</font></b>
+<br>
+<hr WIDTH="90%"></td>
+</tr>
+
+<tr ALIGN=CENTER>
+<td>Version: 0.44c</td>
+<td>Date: 1999-03-25</td>
+</tr>
+
+<tr ALIGN=CENTER>
+<td>Author: David Joffe</td>
+<td>Email: <a href="mailto:djoffe@geocities.com?subject=GNUkem">djoffe@geocities.com</a></td>
+</tr>
+
+<tr ALIGN=CENTER>
+<td colspan=2><a href="http://www.geocities.com/SoHo/Lofts/2018/">http://www.geocities.com/SoHo/Lofts/2018/</a></td>
+</tr>
+
+</table></center>
+
+<ol>
+ <li><a href="#about">About Dave GNUkem</a></li>
+ <li><a href="#credits">Credits</a></li>
+ <li><a href="#license">License</a></li>
+ <li><a href="#requirements">Requirements</a></li>
+ <li><a href="#installation">Installation</a></li>
+ <li><a href="#gameplay">Playing the game</a></li>
+ <li><a href="#ed">The level editor</a></li>
+ <ol>
+  <li><a href="#ed_sprites">Sprites</a></li>
+  <li><a href="#ed_level_new">Creating new levels</a></li>
+  <li><a href="#ed_level_mod">Editing levels</a></li>
+  <li><a href="#ed_mission">Mission packs</a></li>
+ </ol>
+ <li><a href="#tips">Tips and comments</a></li>
+ <li><a href="#fullscreen">Fullscreen mode</a></li>
+ <li><a href="#compile">Compiling the sourcecode</a></li>
+</ol>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="about"></a>About Dave GNUkem</h3>
+
+<ul>
+
+<p align=justify>Dave Gnukem is a 2D scrolling platform
+shoot-em-up. It is very similar to (and inspired by) Duke Nukem 1. The
+main character has been &quot;borrowed&quot; from DN1, perhaps
+temporarily.
+
+<p align=justify>This started out as an exercise for me in learning
+C/C++, back in 1995, using DOS and EGA graphics. It has now been
+converted to run on Linux, using GGI for the graphics library. It is
+playable, but still in development.
+
+<p align=justify>The game is OpenSource - contributions of levels,
+code, and especially ideas are all more than welcome! (And probably
+necessary if this thing is ever going to get finished ..)
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="credits"></a>Credits</h3>
+
+<ul>
+
+<li>David Joffe - Coding, sprites, levels.
+
+<li>Felix Richter - Documentation contributions.
+
+<li>Steve Merrifield - Level contribution.
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="license"></a>License</h3>
+
+<ul>
+
+<p align=justify><tt>This software is Copyright (C) 1998,1999 by David
+Joffe. There is ABSOLUTELY NO WARRANTY for this product. This software
+is distributed under the terms of the GNU General Public
+License. Please read the file COPYING in the distribution for details,
+or visit <a href="http://www.gnu.org/">www.gnu.org</a>.
+</tt>
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="requirements"></a>Requirements</h3>
+
+<ul>
+
+<li><b>Linux:</b> Dave Gnukem was developed and tested under Linux
+(RedHat in particular), although in theory it should also run on other
+UNIX platforms. See <a
+href="http://www.linux.org/">http://www.linux.org/</a>.
+
+<li><b>GGI:</b> Dave Gnukem uses GGI (General Graphics Interface) for
+graphics. GGI is roughly analogous to DirectX in the Windows
+world. See <a
+href="http://www.ggi-project.org/">http://www.ggi-project.org/</a> for
+obtaining GGI, or some further information and tips on GGI here at <a
+href="ggi-en.html">ggi-en.html</a>.
+
+<li><b>Hardware:</b> I don't know what the minimum requirement is. I
+would *guess* a lower-range Pentium or higher-range 486, depending on
+what color depth you run in. I'm developing on a Pentium 120 with a
+somewhat flaky 2MB S3 Trio64V+ graphics card.
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="installation"></a>Installation</h3>
+
+<ul>
+
+<p align=justify>Dave Gnukem is distributed as a &quot;tarball&quot;
+(a .tar.gz archive) of the sources and precompiled executables. Sorry,
+no package formats (such as rpm or deb) yet.
+
+<p align=justify><u>Unpacking the tarball:</u> If you are using
+Midnight Commander, you can just hit &quot;enter&quot; on the
+file. You can also unzip it with KDE's &quot;kzip&quot; utility, and
+probably with GNOME's &quot;guitar&quot;. Real men, however, use the
+command line:
+
+<p><tt>$ tar -xvzf djg0.43.tar.gz</tt>
+
+<p align=justify>Change to the subdirectory created,
+<tt>g/src</tt>. There you will find two executables:
+
+<ul>
+<b>djg</b> - the game<br>
+<b>ed</b> - the sprite and level editor
+</ul>
+
+<p align=justify>To run the game from the commandline, type
+
+<p><tt>$ ./djg</tt>
+
+<p align=justify>(For now, the game must be run from the
+<tt>g/src</tt> directory, because of where it looks for data files.)
+
+<p align=justify>If there are errors, and you have installed GGI, you
+may need to recompile the source code. See the relevant section of the
+documentation.
+
+</ul>
+
+<blockquote>
+<h4>Other files:</h4>
+
+<ul>
+
+<tt>HISTORY</tt> - Program changelog<br>
+<tt>TODO</tt> - Project TODO/buglist<br>
+<tt>FILEFORMATS</tt> - Documentation of game file formats<br>
+<tt>COPYING</tt> - GNU General Public License
+
+</ul>
+
+</blockquote>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="gameplay"></a>The game</h3>
+
+<ul>
+
+<p>Keys:
+
+<table border=1>
+<tr><td>Arrow left/right</td><td>Move hero</td></tr>
+<tr><td>Arrow up</td><td>Action key (open doors, activate teleporters etc)</td></tr>
+<tr><td>Ctrl or P</td><td>Jump</td></tr>
+<tr><td>Alt</td><td>Shoot</td></tr>
+<tr><td>Arrow up + L</td><td>Cheat - next level</td></tr>
+<tr><td>Escape</td><td>Bring up game menu</td></tr>
+</table>
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="ed"></a>The level editor</h3>
+
+<ul>
+
+<p align=justify><i><u>Important note:</u> The format for levels and
+sprites does sometimes change between releases of the game. Do not
+worry - just send me any levels or sprites you created with any
+particular version, tell me what version you created it with, and I'll
+convert it and send you the converted files.</i>
+
+<p align=justify>The level editor <b>ed</b> allows for editing of
+levels and sprites, and has two modes for these tasks, level edit mode
+and sprite edit mode. The two modes can be switched between with F4
+and F5. The editor starts up in sprite edit mode.
+
+<p align=justify>Each game level consists of a 128x100 2D grid of
+cells. These cells are filled with sprites. The grid contains 2 layers
+of sprites. The first layer is the &quot;background layer&quot;, and
+on this you place background stuff like walls, floors etc. The second
+layer (the &quot;foreground layer&quot;) is superimposed on top of the
+background layer, and on it you place things with special functions:
+doors, keys, monsters, food, etc.<p>
+
+<p align=justify>The sprites are divided into &quot;sprite sets&quot;;
+each set contains 128 sprites. From version 0.43, there can be up to
+256 different sprite sets, and each sprite set used in a level must be
+given a unique number from 0 to 255 (see section on mission packs.)
+The first 16 (0 to 15) will be the game's default sprite set. Any
+sprite sets you create additionally should be numbered from 16 up.
+
+<p align=justify><b>NB:</b> The Escape key acts as a "quick exit" to
+the editor. No saving, no questions asked. Be careful with it.
+
+<p align=justify>The <b>F1</b> will save all sprite sets when in
+sprite edit mode, and will save all levels when in level edit
+mode. You must save your changes before you press Escape if you do not
+wish to lose them.
+
+<!---------------------------------------------------------->
+
+<h4><a NAME="ed_sprites"></a>Draw/edit sprites</h4>
+
+<ul>
+
+<p align=justify>Each sprite contains various attributes describing
+it's purpose. There is a &quot;type&quot; attribute, and 12 extra
+numerical attributes (0 to 11), which I have called
+&quot;extras&quot;. There is also a &quot;color&quot; attribute, which
+is not used in the game, but which is used in the level editor to
+display sprites placed on the large grid.</p>
+
+<li>Choosing sprite set: Cycle through sprite sets with M and N.</li>
+
+<li>Choosing sprites: Use the arrow keys or the mouse to select the
+current sprite.</li>
+
+<li>Drawing sprites: You can choose two drawing colors (left mouse
+button and right mouse button) from the 16x16 palette of colors in the
+top right of the screen. These can be placed on the main 16x16 grid
+with left and right mouse buttons.</li>
+
+<li>Transparency: The last color of the palette, number 255, is
+treated as a transparent color.</li>
+
+<li>Sprite attributes:
+<ul>
+
+ <li>Sprite type: This can be selected by clicking on the desired type
+ in the list.</li>
+
+ <li>Sprite color: Use left/right mouse button to choose a sprites
+ color by clicking in the block underneath and to the right of the
+ color palette.</li>
+
+ <li>Sprite extras: To change the numerical values of the 12 extras,
+ use left mouse button to decrement a value, and right mouse button to
+ increment a value. [FIXME: describe meanings of values] The fifth
+ extra value, number 4, is used for sprite flags, describe next.</li>
+
+ <li>Sprite flags: The sprite flags can be set by crossing/uncrossing
+ fields in the lower left of the screen with the mouse. They are:
+ <ul>
+  <li><tt>SOLID</tt> - makes this sprite solid.</li>
+  <li><tt>ANIMATED</tt> - animated object, belongs together with next 3 sprites</li>
+  <li><tt>FALLS</tt> - object will fall down from above when hero arrives</li>
+  <li><tt>COLLECTABLE</tt> - hero can pick it up</li>
+  <li><tt>INVENTORY</tt> - object will be stored in "Inventory"</li>
+ </ul>
+
+</ul>
+
+<li>Remember, no changes will be written unless you press "F1"!</li>
+
+</ul>
+
+<p>To switch into level edit mode, press F5.
+
+<!---------------------------------------------------------->
+
+<h3><a NAME="ed_level_new"></a>Create levels</h3>
+
+<p align=justify>To create an "empty" level file, change to the
+<tt>g/data</tt> directory and copy the file <tt>template.lev</tt> to a
+new file, eg <tt>spaceship.lev</tt>. You must add an entry for this
+level in your mission file (see section on mission packs.)
+
+<!---------------------------------------------------------->
+
+<h3><a NAME="ed_level_mod"></a>Change levels</h3>
+
+<ul>
+
+<li>Cycle through existing level files using&nbsp; <tt>Ctrl+M</tt> or
+<tt>Ctrl+N</tt>. The level filename will show up, and there will be a
+magnified view (1:1) of the current selection.</li>
+
+<li>The magnified portion of the level that is shown on the top right
+of the screen can be selected either by using the arrow keys, or with
+<tt>Alt+LeftMouseClick</tt> in the level overview on the left.</li>
+
+<li>Still use <tt>M</tt> and <tt>N</tt> to cycle through sprite
+sets.</li>
+
+<li>You can choose two sprites to draw with, using left mouse button
+and right mouse button. You can click in both the overview area and
+the magnified view to place sprites.</li>
+
+<li>By default, you will be drawing on the background layer. Use
+<tt>X</tt> to switch to and from editting on the foreground layer.</li>
+
+<li>No changes will be written unless you press "F1"!</li>
+
+<li>Some sprites (usually placed on the foreground) are special; they
+will never appear as is in the actual game. Rather, they are just used
+to mark the positions of real objects in the game.</li>
+
+<ol>
+
+ <li><b>Positioners</b>:</li>
+
+ <ul>
+
+  <li>The yellow stick man will act as hero's starting position, the
+  arrow indicates the direction he will be facing when he starts. Only
+  place one of these! If you place more than one, the bottom-most one
+  in the level will be used.</li>
+
+  <li>The purple stick men will be replaced by real monsters. The
+  small number next to the stick men indicate which type of monster is
+  placed. Do not place the sprite for the actual monster graphics -
+  they will appear in the game but do nothing at all.</li>
+
+  <li>There is a blue "EXIT" in the first sprite set. Use this one to
+  mark the level's exit. It will automatically be replaced by a more
+  decorative graphic in the game. Do not place the decorative version
+  in the level.</li>
+
+  <li>To set teleporters, use the "T" sprites with a number. There is
+  more than one teleporter, and each is numbered. There must be
+  exactly two teleporters of the same number in one level!</li>
+
+ </ul>
+
+ <li><b>Object types</b>:</li>
+
+ <br>Here are some examples of how the sprite "type" attribute is
+ used:
+
+ <ul>
+
+  <li><tt>LookAtHero:</tt>Arrow (Camera), turns to face hero</li>
+
+  <li><tt>Conv left/right:</tt>left, right conveyor belts</li>
+
+  <li><tt>Key, DoorActivator, Door:</tt>keys, keyholes, doors. Note
+  that each key, door etc is numbered (extra[0]). So door no 2 goes
+  with key no 2 and dooractivator no 2.</li>
+
+  <li><tt>HeroStart:</tt>Hero's starting position</li>
+
+  <li><b><tt>TYPE_BOX</tt></b> An object of type BOX can contain
+  (optionally) other sprites. These sprites can be any valid sprite
+  that you place in the level, including other boxes :) When you shoot
+  the original box, a new object is spawned, based on the values in
+  extras[10] and extras[11]. Extras[10] is the spriteset of the new
+  sprite, and extras[11] is the sprite index. Use 0,0 for an empty
+  box. The boxes currently contain the following:
+  RED(coke,apple,banana); BLUE(); GRAY(emptybox,G,N,U,K,E,M)
+
+  <li><b><tt>TYPE_LETTER</tt></b> There are six letters. These SHOULD
+  be placed using the gray boxes that contain them. Traditionally the
+  hero must collect these letters in the correct order to get some
+  bonus points. Extras[11] contain the sprite number, as a zero-based
+  offset into the word GNUKEM.
+
+ </ul>
+
+</ol>
+
+<li>Animated objects consist of 4 sprites. E.g. use the first of four
+sprites to set a door. It is marked as ANIMATED - the next three
+following the one marked as ANIMATED will then automatically be used
+for animation. Similar situation for LookAtHero: You have to set the
+middle sprite of the three for LookAtHero as LookAtHero type. The
+others are nothing but images inserted automatically while playing the
+game.</li>
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="tips"></a>Tips and comments</h3>
+
+<ul>
+
+ <li>I suggest you design your levels on paper first. PLAN YOUR
+ LEVELS!</li>
+
+ <li>To draw a long straight line of something in the editor (at least
+until I write decent fill functions), hold down mouse on real-size
+view and then hold down an arrow key. There is also now a horizontal
+fill which NB NB only fills on the background.</li>
+
+ <li>Some things only work when on the foreground layer. Some of these
+are meant to be that way but some are bugs; eg the (Mac) Apple is
+meant to work on the background but doesn't.</li>
+
+ <li><b>Powerboots:</b> When you design your levels, *know in advance*
+ whether or not our hero already has the powerboots. He keeps them
+ from level to level. Typically he will pick them up midway through a
+ game.
+
+ <li>You should never allow the hero to get close enough to the edges
+for edge scrolling to stop (nothing bad will happen if you do, but you
+should avoid it if possible. The scrolling behaviour becomes "odd"
+near the edges.) See the "test" level for how close you can get to the
+top of the level (without power boots) - those pieces of ground are at
+the highest they can be without any behaviour that would be unusual
+for the player. This may change later if I increase the size of the
+viewport again, so try give yourself reasonable space at the
+edges.</li>
+
+ <li>The hero can jump (normally; without power boots) 3 blocks high
+(4 with power boots). Make sure you have a good feel for how he jumps,
+before you "jump" in and make levels.</li>
+
+ <li>Send me your levels!! I will pick the best ones for the "actual
+game" (by vote perhaps?), but also include the rest for people to
+play. Credit will always be given to the designers of the levels.</li>
+
+ <li>Yes the editor sort of sucks. That's what the source code is for
+;)</li>
+
+</ul>
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a name="ed_mission">Mission packs</a></h3>
+
+<ul>
+
+<p align=justify>Sets of levels and sprites can now be grouped
+together into "missions".
+
+<p align=justify>Each mission is described in a <tt>.gam</tt> file in
+the data directory. The list of missions available to the game is in
+the file <tt>g/data/games</tt>. So to create a mission pack, create a
+.gam file (perhaps by doing a <tt>"cp g/data/default.gam
+g/data/spaceship.gam"</tt>) and then add the line
+<tt>spaceship.gam</tt> to <tt>g/data/games</tt>.
+
+<p align=justify>Look at <tt>g/data/default.gam</tt> to get an idea
+for the layout of a mission file. Each mission pack has a name (one
+line) and a description (multiple lines.) Then there is a list of
+levels, then there is a list of spritesets.
+
+<p align=justify>Each level in the list of levels is formatted like
+this:
+
+<br><tt>filename.lev,Name Of Level,Author Name</tt>
+
+<p align=justify>Each spriteset in the list of spritesets is formatted
+like this:
+
+<br><tt>IDNUMBER,filename.spr,filenamespr.dat,Name of spriteset</tt>
+
+<p align=justify>filename.spr contains the actual sprite
+images. filenamespr.dat is a file containing the attributes associated
+with sprites (sprite type, extras, color etc.)
+
+<p align=justify>The IDNUMBER is a number from 0 to 255. It is
+important to understand how this is used. The first 16 (ID's 0 to 15)
+are "reserved" by the actual game. Currently, only the first 8 are
+actually used (0 to 7) and 8 to 15 are reserved for future use, so
+we'll ignore spritesets 8 to 15 for now.
+
+<p align=justify>NB: The first 8 spritesets, with ID's 0 to 7, must
+still be defined in your mission file! If you do not, the game will
+probably crash. Typically, you will use the supplied default 8 sprite
+files to define spritsets 0 to 7; that is, def0.spr,def0spr.dat
+etc. See default.gam and foo.gam for examples of this. Your first 8
+spritesets will probably look like this then:
+
+<p>
+<tt>
+0,def0.spr,def0spr.dat,General<br>
+1,def1.spr,def1spr.dat,General<br>
+2,def2.spr,def2spr.dat<br>
+3,def3.spr,def3spr.dat<br>
+4,def4.spr,def4spr.dat,Hero graphics<br>
+5,def5.spr,def5spr.dat,Bullets etc<br>
+6,def6.spr,def6spr.dat,monsters<br>
+7,def7.spr,def7spr.dat,monsters<br>
+</tt>
+
+<p align=justify>Advanced: For ID's 0 to 7, you do not strictly have
+to use the supplied sprite files (defN.spr etc). However, the game
+references sprites in these sets explicitly by ID number and offset,
+meaning that if you change them, the game will still try draw certain
+things (like exits and teleporters) from where it expects them to be
+in the spritesets. Thus, you will be able to change the appearance of
+(say) exits and monsters in your supplied spritesets, but you will
+never be able to change where the exit is located in the spritesets.
+
+<p align=justify>If all this has confused you, then don't worry. Just
+copy the 8 lines above, as is, into your list of spritesets and then
+never worry about it again.
+
+<p align=justify>Once you have set the "default" spritesets, and you
+wish to create more sprites not supplied with the game, you can start
+adding your own from 16, eg:
+
+<p>
+<tt>
+16,mine.spr,minespr.dat,My sprites<br>
+62,ocean.spr,ocean.dat,Ocean sprites<br>
+~
+</tt>
+
+<p align=justify>Note that your own spritesets are added from 16
+onwards. Also note that each section ends with a "~".
+
+<p align=justify>It is important to note that the ID number is used in
+the level files. Thus, if you later on change the ID numbers, the ID
+numbers in the level files will point to the wrong spritesets (or none
+at all.) So, once you have decided that (for example) your spriteset
+for the spaceship graphics is ID 25, stick with 25.
+
+<p align=justify>All of the above should be telling you: <b>planning
+is important!</b>
+
+<p align=justify>Later on, I may make it possible to use pcx format
+for the sprites, if people want that.
+
+
+</ul>
+
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="fullscreen"></a>Fullscreen mode</h3>
+
+<ul>
+
+<p align=justify>There are two ways to increase the size of the window
+in X: double-size window mode, and full-screen mode.
+
+<p align=justify>Running the game "./djg -d" will give you double-size
+mode. I hope you have a fast computer. This is really a fall-back for
+people who can't get fullscreen mode to work.
+
+<p align=justify>Running the game "./djg -f" will give you fullscreen
+mode. However:
+
+<ul>
+
+ <li>Fullscreen mode uses the X DGA extension. This requires you to be
+ root. Running the included script "./fullscreen" will handle setting
+ this up for you.</li>
+
+ <li>For the DGA extension to work, it seems you need a 320x200
+ modeline set up for your X setup in your "Screen" section. You may
+ need to edit /etc/X11/XF86Config to get this to work.
+
+</ul>
+
+<p align=justify>There is an alternative way to use fullscreen mode,
+without using "-f" or the fullscreen script. GGI can be instructed to
+use DGA by default, by exporting an environment variable:
+
+<p><tt>$ export GGI_DISPLAY="dga"</tt>
+
+<p align=justify>Lastly, when DGA sets the screen mode, it seems to
+maintain a normal-size virtual screen, and just draw in the top left
+320x200 of the screen. You may need to use the mouse to scroll to the
+top left of the screen.
+
+</ul>
+
+<!---------------------------------------------------------->
+<p><hr>
+
+<h3><a NAME="compile"></a>Compiling the sourcecode</h3>
+
+<ul>
+
+<p align=justify>Change to the directory <tt>g/src</tt>.
+
+<p align=justify>Edit the <tt>Makefile</tt> if you want/need to make
+changes to the setup.
+
+<p align=justify>Make options:
+<ul>
+ <b><tt>make</tt></b> - compile the game, djg<br>
+ <b><tt>make ed</tt></b> - compile the editor, ed</br>
+ <b><tt>make fixme</tt></b> - display list of FIXME's in the code.<br>
+ <b><tt>make linecount</tt></b> - count the number of lines of code :)<br>
+ <b><tt>make clean</tt></b> - remove binaries, object files etc.</br>
+ <b><tt>make dist</tt></b> - same as clean, except doesn't remove binaries.
+</ul>
+
+<p align=justify><b>Speed optimizing</b>: If you want/need to coax a
+bit of extra speed out of Dave Gnukem, you can do a couple of
+things. In the Makefile:
+<ul>
+<li>Remove "-DDEBUG" from CFLAGS.
+<li>Add "-O" to CFLAGS to enable optimizations.
+<li>Add "-m486" to CFLAGS to enable 486-specific optimizations. (-m586?)
+</ul>
+
+<p align=justify>This should get you between 5 and 20 % speed
+improvement.
+
+</ul>
+
+
+<hr WIDTH="90%">
+<center>Contact:
+<br><a href="mailto:djoffe@geocities.com?subject=GNUkem">D. Joffe</a>-
+(German docs: <a href="mailto:frichter@topmail.de?subject=GNUkem">F. Richter</a>)
+<br>
+<hr WIDTH="90%"></center>
+
+</body>
+</html>

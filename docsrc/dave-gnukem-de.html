@@ -1,0 +1,375 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Felix Richter">
+   <meta name="GENERATOR" content="Mozilla/4.5 [de] (Win95; I) [Netscape]">
+   <title>Dave GNUkem: Einf&uuml;hrung</title>
+</head>
+<body text="#000000" bgcolor="#8080C0" link="#FFFFFF" vlink="#800080" alink="#FFFF00">
+&nbsp;
+<center><table CELLSPACING=0 COLS=2 WIDTH="74%" BGCOLOR="#33CCFF" >
+<tr ALIGN=CENTER>
+<td COLSPAN="2"><img SRC="davenuke.gif" height=31 width=88>
+<br><b><font size=+3>Dave GNUkem</font></b>
+<br>
+<hr WIDTH="90%"></td>
+</tr>
+
+<tr ALIGN=CENTER>
+<td>Version: 0.42</td>
+
+<td>Datum: 1999-02-08</td>
+</tr>
+
+<tr ALIGN=CENTER>
+<td>Autor: <a href="mailto:djoffe@geocities.com?subject=Dave GNUkem">David
+Joffe</a></td>
+
+<td><a href="http://www.geocities.com/SoHo/Lofts/2018/">Homepage</a></td>
+</tr>
+</table></center>
+
+<ol>
+<li>
+<a href="#about">&Uuml;ber Dave GNUkem</a></li>
+
+<li>
+<a href="#requirements">Voraussetzungen</a></li>
+
+<li>
+<a href="#installation">Installation</a></li>
+
+<li>
+<a href="#gameplay">Das Spiel</a></li>
+
+<li>
+<a href="#ed">Der Level-Editor</a></li>
+
+<ol>
+<li>
+<a href="#ed_sprites">&Auml;ndern/Zeichnen von Sprites</a></li>
+
+<li>
+<a href="#ed_level_new">Level erstellen</a></li>
+
+<li>
+<a href="#ed_level_mod">Level &auml;ndern</a></li>
+
+<li>
+<a href="#tips">Tips, Tricks und Kommentare</a></li>
+</ol>
+
+<li>
+Technik/Sourcecodes</li>
+</ol>
+
+<h3>
+<a NAME="about"></a>&Uuml;ber Dave GNUkem</h3>
+
+<blockquote>Dave GNUkem ist ein freies Jump-and-Run-Spiel f&uuml;r Linux
+(und andere UNIXe?) nach dem Vorbild von Duke Nukem I. Die Duke-Nukem-Figur
+wurde einstweilig "geborgt".
+<br>Anfangs war es mehr eine &Uuml;bung f&uuml;r C / C++ - Programmierung
+und lief unter DOS mit EGA-Grafik; nun wird es portiert auf die Linux-Plattform
+und benutzt die GGI-Grafikbibliotheken. Obwohl es sich schon spielen l&auml;&szlig;t,
+ist es also noch in der Entwicklung. Ideen, neue Levels und sonstige Mitwirkung
+sind hochwillkommen - der Quellcode ist offen!
+<p><tt>This software is Copyright (C) 1998 by David Joffe.</tt>
+<br><tt>There is ABSOLUTELY NO WARRANTY for this product.</tt>
+<br><tt>This software is distributed under the GNU General Public License.
+Please read the file COPYING for details.</tt></blockquote>
+
+<h3>
+<a NAME="requirements"></a>Voraussetzungen</h3>
+
+<blockquote>Dave GNUkem wurde nur unter <a href="http://www.linux.org">Linux</a>,
+dem "m&auml;nnlichsten aller Betriebssysteme" ;-), entwickelt und getestet,
+sollte aber theoretisch auch unter anderen UNIXen laufen.
+<p>F&uuml;r die Grafik werden die GGI-Bibliotheken ben&ouml;tigt (<i>libggi</i>).
+Am einfachsten sind diese mit DirectX aus der Windows-Welt zu vergleichen,
+gehen aber weit &uuml;ber diesen Ansatz hinaus.
+<br>Die Entwickler vom GGI-Projekt erm&ouml;glichen den Download unter
+<a href="http://www.ggi-project.org/">http://www.ggi-project.org/</a>,
+einen <a href="http://www.de.ggi-project.org">deutschen Mirror</a> gibt
+es auch. (<a href="ggi-de.html">N&auml;here Informationen und Tips zur
+Kompilierung und Installation</a>)
+<br>&nbsp;</blockquote>
+
+<h3>
+<a NAME="installation"></a>Installation</h3>
+
+<blockquote>Im Moment wird Dave GNUkem - entsprechend seinem Status als
+Programm in Entwicklung - in einem noch nicht aufbereiteten TAR.GZ-Archiv
+bereitgestellt, also nicht in einem fertigen Paket (RPM oder DEB).
+<br>Allerdings sind alle n&ouml;tigen ausf&uuml;hrbaren Dateien bereits
+enthalten, so da&szlig; man sich das Kompilieren ersparen kann.
+<p>Wenn Sie mit dem MidnightCommander oder dem Dateimanager des KDE arbeiten,
+gen&uuml;gt ein Klick oder "Enter" auf die Datei <tt>djg.tar.gz</tt>, um
+an deren Inhalt zu gelangen. Kopieren Sie das Verzeichnis "g" einfach heraus,
+z.B. in ihr Homeverzeichnis,<tt> /usr/src</tt> oder <tt>/usr/games.</tt>
+Ansonsten k&ouml;nnen Sie das Archiv selbst an diese Stelle kopieren und
+auf der Befehlszeile wie folgt auspacken:
+<br>&nbsp;&nbsp;&nbsp; <tt>$ tar -xvzf&nbsp; djg.tar.gz</tt>
+<p>In <tt>g/src</tt> finden Sie dann zwei ausf&uuml;hrbare Dateien:
+<blockquote><b>djg</b> - das Spiel
+<br><b>ed</b>&nbsp; - den Leveleditor</blockquote>
+Vergessen Sie nicht, da&szlig; Sie auf der Kommandozeile aus Sicherheitsgr&uuml;nden
+einen Punkt-Schr&auml;gstrich voranstellen m&uuml;ssen: <b><tt>./djg</tt></b>
+<p>Wer neu kompilieren m&ouml;chte, kann das <tt>Makefile</tt> anpassen
+und mit <tt>make</tt> das Spiel inklusive Editor neu "backen".
+<h4>
+Weitere Dateien:</h4>
+
+<ul><tt><a href="HISTORY">HISTORY</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Program changelog (english)
+<br><tt><a href="TODO">TODO</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-</tt>&nbsp; Project TODO/buglist (english)
+<br><tt>fullscreen.txt - </tt>Vollbildmodus unter X (braucht 'root'-Account)
+<br><tt>ed.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - </tt>Sprite-/Level-Editor
+Dokumentation
+<br><tt>FILEFORMATS&nbsp;&nbsp;&nbsp; - </tt>Dokumentation der Datendateiformate
+<br><tt><a href="COPYING">COPYING</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>GNU License (english)</ul>
+</blockquote>
+
+<h3>
+<a NAME="gameplay"></a>Das Spiel</h3>
+
+<blockquote>Tastenbelegung:
+<p><tt>Pfeil links/rechts&nbsp; - </tt>Dave bewegen
+<br><tt>Pfeil hoch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Ger&auml;te wie Schlie&szlig;anlagen vor T&uuml;ren, Teleporter,
+Levelausgang aktivieren
+<br><tt>Strg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Springen (alternativ wg. Bug auf GGI-SVGA: "P")
+<br><tt>Alt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Schie&szlig;en
+<br><tt>Leertaste&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Men&uuml; aufrufen
+<br><tt>Esc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- </tt>Abbrechen
+<br><tt>Pfeil hoch + L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - </tt>Cheat: N&auml;chstes
+Level</blockquote>
+
+<h3>
+<a NAME="ed"></a>Der Level-Editor</h3>
+
+<ul>Der Level-Editor <b>ed </b>erlaubt das &Auml;ndern von Sprites und
+Levels. F&uuml;r beides h&auml;lt er einen eigenen Modus bereit.
+<br>Levels in "Duke GNUkem" bestehen aus einer Art Schachbrett von jeweils
+128 x 100 Zellen Gr&ouml;&szlig;e. In diese Zellen werden Sprites - kleine
+viereckige Bildchen - geklebt. Die erste Lage bildet den Hintergrund, also
+W&auml;nde, B&ouml;den usw., die zweite Lage wird dar&uuml;bergelegt und
+enth&auml;lt Dinge mit besonderen Funktionen: T&uuml;ren, Schl&uuml;ssel,
+Monster usw.
+<p>Es werden zun&auml;chst 8 S&auml;tze von je 128 Sprites unterst&uuml;tzt.
+Die Vordergrundsprites k&ouml;nnen zus&auml;tzlich Attribute haben, die
+die Sonderfunktionen bestimmen.
+<p>Vorsicht: Die <tt>ESC</tt>-Taste beendet den Editor sofort und ohne
+Speichern oder R&uuml;ckfrage!
+<p>Der Editor startet im Sprite-Edit-Modus.
+<h4>
+<a NAME="ed_sprites"></a>&Auml;ndern/Zeichnen von Sprites</h4>
+
+<ul>
+<li>
+Zu &auml;nderndes Sprite w&auml;hlen:&nbsp; <tt>M</tt> und <tt>N</tt> bl&auml;ttern
+durch die Sprite-S&auml;tze, mit der Maus oder den Pfeilen kann unten links
+das Sprite gew&auml;hlt werden.</li>
+
+<li>
+Die Zeichenfarbe wird rechts oben ausgew&auml;hlt, die linke wie die rechte
+Maustaste lassen sich mit je einer Farbe belegen.</li>
+
+<li>
+Jetzt kann oben links gezeichnet werden</li>
+
+<li>
+Attribute des aktuellen Sprites &auml;ndern: ganz unten links durch setzen
+der Kreuze mit der Maus</li>
+
+<br>Erl&auml;uterung:
+<ul>
+<li>
+<tt>SOLID</tt> - fester K&ouml;rper: Hindurchgehen nicht m&ouml;glich</li>
+
+<li>
+<tt>ANIMATED</tt> - Animiertes Objekt, die drei n&auml;chsten Sprites geh&ouml;ren
+dazu</li>
+
+<li>
+<tt>FALLS</tt> - Objekt soll vom Himmel fallen, wenn der Held die Stelle
+erreicht</li>
+
+<li>
+<tt>COLLECTABLE</tt> - der Held kann es aufsammeln k&ouml;nnen</li>
+
+<li>
+<tt>INVENTORY</tt> - es wird dann im Inventory "geparkt"</li>
+</ul>
+
+<li>
+&Auml;nderungen werden erst mit F1 in die Sprite-Dateien geschreiben</li>
+</ul>
+
+<p><br>Es existieren noch weitere Befehle zum bequemeren Editieren. Diese
+sind in der Liste rechts unten aufgef&uuml;hrt und sollten selbsterkl&auml;rend
+sein.
+<p>Mit F5 kann in den Level-Edit-Modus gewechselt werden.
+<h3>
+<a NAME="ed_level_new"></a>Level erstellen</h3>
+Die Level-Dateien (<tt>*.lev</tt>) befinden sich <i>noch</i> im Unterverzeichnis
+<tt>/data</tt>.
+Um ein neues Level zu erstellen, erzeugen Sie einfach eine Kopie von einer
+der Dateien <tt>world*.lev</tt> und benennen diese analog mit der n&auml;chsten
+freien Zahl, also z.B. <tt>world5.lev</tt>.
+<h3>
+<a NAME="ed_level_mod"></a>Level &auml;ndern</h3>
+
+<ul>
+<li>
+Mit <tt>Strg+M</tt> bzw. <tt>Strg+N</tt> kann durch die Levels gebl&auml;ttert
+werden, deren Dateiname erscheint dann unterhalb des vergr&ouml;&szlig;erten
+Ausschnitts</li>
+
+<li>
+Mit <tt>Alt-Klick</tt> in der &Uuml;bersicht den zu bearbeitenden Ausschnitt
+w&auml;hlen, dieser erscheint dann rechts oben 1:1</li>
+
+<li>
+Mit <tt>M</tt> und <tt>N</tt> kann wieder durch die Sprite-S&auml;tze gebl&auml;ttert
+werden.</li>
+
+<li>
+Zu setzendes Sprite unten links w&auml;hlen, es erscheint knapp dar&uuml;ber
+noch einmal. Zeichnen ist sowohl in die &Uuml;bersicht und den Ausschnitt
+hinein m&ouml;glich; beide Maustasten k&ouml;nnen mit einem Sprite belegt
+werden.</li>
+
+<li>
+Zun&auml;chst sollte der Hintergrund erstellt werden, dann kann mit <tt>X</tt>
+in den Vordergrund-Modus gewechselt werden, der mit "<tt>[Foreground]</tt>"
+kenntlich gemacht wird.</li>
+
+<li>
+Erst ein Druck auf <tt>F1</tt> schreibt die &Auml;nderungen am Level in
+die entsprechende Datei!!</li>
+
+<li>
+Bestimmte Sprites f&uuml;r den Vordergrund erscheinen sp&auml;ter gar nicht
+- oder anders - im Spiel. Ihr Zweck ist, dem Spiel beim Einlesen der Levels
+bestimmte Dinge kenntlich zu machen:</li>
+
+<ol>
+<li>
+<b>Positionierer</b>:</li>
+
+<ul>
+<li>
+Das Strichm&auml;nnchen (gelb) ist die Startposition des Helden im Level,
+der Pfeil gibt seine Blickrichtung an.</li>
+
+<li>
+Das Strichm&auml;nnchen (lila) mit der 0 wird ein Monster.</li>
+
+<li>
+Das eine Einheit gro&szlig;e, blaue EXIT im ersten Spriteset wird nat&uuml;rlich
+zum Levelausgang und durch eine dekorativere Grafik ersetzt.</li>
+
+<li>
+Zum Setzen von Teleportern ben&uuml;tze man die T, die mit einer Nummer
+versehen sind. Von jeder Nummer m&uuml;ssen genau 2 im Level existieren!</li>
+</ul>
+
+<li>
+<b>Objekte mit Sonderfunktionen</b>:</li>
+
+<br>Die Liste in der Mitte des Editors zeigt die Sonderfunktionen an, die
+das Spiel beherrscht. Falls einem Sprite eine Sonderfunktion zugeordnet
+ist, so wird diese in der Liste mit einem Pfeil markiert.
+<br>Beispiele:
+<ul>
+<li>
+<tt>LookAtHero:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</tt>Pfeil/Kamera, die Held verfolgt</li>
+
+<li>
+<tt>Conv left/right:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</tt>F&ouml;rderband
+links- oder rechtslaufend</li>
+
+<li>
+<tt>Key, DoorActivator, Door: </tt>Schl&uuml;ssel, Schl&uuml;sselloch,
+T&uuml;r</li>
+
+<li>
+<tt>HeroStart:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</tt>Startposition des Helden</li>
+</ul>
+</ol>
+
+<li>
+Animierte Objekte bestehen aus 4 hintereinanderliegenden Sprites. F&uuml;r
+z.B. T&uuml;ren setze man nur das erste dieser 4, das auch als ANIMATED
+gekennzeichnet ist - die restlichen drei werden w&auml;hrend des Spiels
+dann f&uuml;r die Animation genutzt.</li>
+
+<br>&Auml;hnlich verh&auml;lt es sich mit dem LookAtHero: Es mu&szlig;
+dasjenige Sprite gesetzt werden, das auch durch den Pfeil in der mittleren
+Liste anzeigt, da&szlig; es das Sprite f&uuml;r diese Sonderfunktion ist.
+Die beiden anderen Sprites mit dem gelben Pfeil sind reine Bilder und werden
+vom Spiel gesteuert.</ul>
+
+<h3>
+<a NAME="tips"></a>Tips, Tricks und Kommentare</h3>
+
+<ul>
+<li>
+Wenn Sie <i>neue</i> Sprites erstellen m&ouml;chten, kontaktieren Sie bitte
+den Autor, damit er bei seinen Weiterentwicklungen Platz daf&uuml;r freihalten
+kann, damit nicht irgendwann andere Sprites auf demselben Platz abgelegt
+werden und Chaos in den Leveln verursachen.</li>
+
+<li>
+Am besten zeichnen Sie Ihre Levels erst auf Papier vor.</li>
+
+<li>
+Lassen Sie den Helden nicht zu nah an die Ecken des Levels kommen, damit
+das Spiel nicht in Schwierigkeiten mit dem Scrolling kommt. Sehen Sie sich
+dazu das Test-Level an.</li>
+
+<li>
+Normalerweise kann der Held 3 Bl&ouml;cke hoch springen, mit den Powerboots
+sind es 4. Vor dem Erstellen neuer Level sollten Sie ein Gef&uuml;hl f&uuml;r
+die Spr&uuml;nge entwickelt haben.</li>
+
+<li>
+Schicken Sie die Levels an den Autor. Die besten werden direkt ins Spiel
+integriert werden, aber der Rest wird nat&uuml;rlich auch beigepackt. In
+beiden F&auml;llen werden Sie in den Credits erscheinen.</li>
+
+<li>
+Ja, der Editor <i>ist</i> schei&szlig;e. Aber daf&uuml;r ist ja der Quellcode
+da ;-)</li>
+
+<br>&nbsp;</ul>
+</ul>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<p>
+<hr WIDTH="90%">
+<center><b>Kontakt:</b>
+<br>Deutscher Teil: <a href="mailto:frichter@topmail.de?subject=GNUkem">F.
+Richter</a> - Englischer Teil: <a href="mailto:djoffe@geocities.com?subject=GNUkem">D.
+Joffe</a>
+<br>
+<hr WIDTH="90%"></center>
+
+</body>
+</html>

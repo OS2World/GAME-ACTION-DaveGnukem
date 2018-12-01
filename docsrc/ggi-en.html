@@ -1,0 +1,113 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Felix Richter">
+   <meta name="GENERATOR" content="Mozilla/4.5 [de] (Win95; I) [Netscape]">
+   <title>ggi</title>
+</head>
+<body>
+
+<h2>
+Hints on GGI</h2>
+
+<blockquote>GGI is short for "General Graphics Interface". The <a href="www.ggi-project.org">GGI-Project</a>
+team is working on a sort of free "DirectX" for Linux. I hope this comparison
+does not offend them, but it&acute;s a short characterization of GGI:
+<p>Realising graphics under Linux was divided in two up to now. <tt>svgalib</tt>
+on the one hand, which allowed graphics on the console for several graphic
+chipsets, the XServers on the other hand using a different technique.
+<br>GGI aims to unite both to provide fast, hardware-accelerated graphics
+under a good API. GGI-programs won&acute;t matter how and where is displayed
+what they asked the GGI libraries to do so. The latter try to display where
+the user wants it to:
+<blockquote>
+<li>
+on the existing X. A program would run in a normal window in KDE, GNOME,
+...</li>
+
+<li>
+on the existing <tt>svgalib</tt></li>
+
+<li>
+on the existing <tt>aalib</tt>. AA ("ASCII Arts") tries to do graphics
+on devices that are not capable of doing it using text characters.</li>
+
+<li>
+on the new framebuffer device (/dev/fbcon) coming with the 2.2.x series
+kernel</li>
+
+<li>
+into a file. This way one can easily create screenshots and screenfilms.</li>
+
+<li>
+...</li>
+<</blockquote>
+Two or more of these displaying targets can be used at the same time(eg:
+Displaying on monitor and file simultaneously.); filters can be inserted
+that compute graphics data to other resolutions or dither to other colour
+depths. The same program can be run on console or under X this way.
+<p>Last but not least there is also an API for input devices such as joysticks:
+<tt>libgii </tt>(General Input Interface).
+<p>GGI is in the latest phase of development and aims for a second release
+(Codename "Degas"). You should download the fresh sourcecodes found under
+"Development" instead of using the first release: <a href="www.ggi-project.org">GGI-Homepage</a>
+(~2,5 MB)
+<h4>
+Interessante Entwicklungen:</h4>
+
+<blockquote>
+<li>
+Many games, notably DOOM, QUAKE and consorts are ported to Linux/GGI.</li>
+
+<br>There is an XServer for GGI. X asks GGI to display everything and takes
+advatage of it&acute;s features. Writing two or three "drivers" for new
+graphic chipsets is not needed any more (XServer, SVGALib, GGI); X also
+takes advantage of the framebuffer device. One could also think of a textmode
+X using the GGI-XServer on AA.
+<li>
+<a href="www.berlin-consortium.org">Berlin</a> is a new GUI on top of GGI.</li>
+</blockquote>
+
+<h2>
+</h2>
+</blockquote>
+
+<h2>
+Dave GNUkem und GGI</h2>
+
+<blockquote>Dave GNUkem also uses GGI. Run under X, the GGI libs know that
+they should use the X target and a window titled "GGI-on-X" should pop
+up.
+<br>If not open a <b>xterm</b> or a KDE Terminal or ..., and start the
+game from the commandline: <b>./djg</b>
+<br>Now you can see error and debugging messages
+<br>&nbsp;
+<p>Die zwei h&auml;ufigsten Fehler:
+<ol>
+<li>
+<tt>could not load library: libggi.so.2&nbsp; File not found</tt></li>
+
+<br>(oder so:): Die GGI-Bibliotheken konnten nicht gefunden werden.
+<br>In der Datei <tt>/etc/ld.so.conf</tt> sind die Suchpfade aufgelistet,
+in denen Bibliotheken gesucht werden. GGI installiert sich meist unter
+<tt>/usr/local/lib</tt>.
+<br>Dieser Eintrag mu&szlig; noch mit einem Editor nachgeholt werden. Danach
+sorgt ein simpler Aufruf des Programms <tt>/sbin/ldconfig</tt> daf&uuml;r,
+da&szlig; die neuen Informationen aufbereitet und in der Datei <tt>/etc/ld.so.cache</tt>
+abgelegt werden. Nun sollten alle Programme die Bibliotheken in diesem
+Verzeichnis benutzen k&ouml;nnen.
+<li>
+Der Grafikmodus kann nicht initialisiert werden. Dave GNUkem benutzt wie
+das Original nur 256 Farben, das entspricht einer Farbtiefe von 8 bit,
+und versucht, einen Darstellungsbereich von 320x200 Pixeln zu bekommen.</li>
+
+<br>Versuchen Sie - falls es nicht automatisch beim Hochfahren gestartet
+wird, X mit startx -8bpp zu starten, andernfalls m&uuml;ssen Sie vielleicht
+die Standard-Farbtiefe in X auf 8 zu setzen. Dies k&ouml;nnen Sie per Hand
+in /etc/X11/XF86Config (Eintr&auml;ge "DefaultColorDepth") oder mit dem
+Programm XF86Config bewerkstelligen.</ol>
+</blockquote>
+
+</body>
+</html>

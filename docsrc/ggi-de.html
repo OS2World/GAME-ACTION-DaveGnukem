@@ -1,0 +1,128 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Felix Richter">
+   <meta name="GENERATOR" content="Mozilla/4.5 [de] (Win95; I) [Netscape]">
+   <title>ggi</title>
+</head>
+<body>
+
+<h2>
+Hinweise zu GGI</h2>
+
+<blockquote>GGI steht kurz f&uuml;r "General Graphics Interface". Das Team
+des <a href="www.ggi-project.org">GGI-Projekts</a> arbeitet an einer Art
+freiem "DirectX" f&uuml;r Linux und andere UNIXe, wobei sie den Vergleich
+mit DirectX wahrscheinlich als Beleidigung auffassen w&uuml;rden. Dennoch
+charakterisiert er GGI recht gut:
+<p>Die Realisierung von Grafikdarstellung unter Linux wurde bis dato zweigleisig
+gefahren: Einmal die <tt>svgalib</tt> - Bibliotheken, die f&uuml;r einige
+Grafikkarten Grafik auf der Konsole erm&ouml;glichen, andererseits die
+XServer f&uuml;r X, die aber unterschiedliche Karten/Chips&auml;tze unterst&uuml;tzen.
+<br>GGI will nun beides vereinen und schnelle, hardwarenahe Grafik unter
+einer einheitlichen Schnittstelle (API) bieten. F&uuml;r GGI-Programme
+ist es unerheblich, wie und wo angezeigt wird, was es den GGI-Bibliotheken
+&uuml;bergibt, denn nur diese k&uuml;mmern sich darum, es dort darzustellen,
+wo der Benutzer es gew&auml;hlt hat:
+<blockquote>
+<li>
+auf dem vorhandenen X. Das Programm l&auml;uft dann in einem "ganz normalen"
+Fenster unter KDE, GNOME, ...</li>
+
+<li>
+&uuml;ber die vorhandene <tt>svgalib</tt></li>
+
+<li>
+&uuml;ber die vorhandene <tt>aalib</tt>. AA ("ASCII Arts") versucht, die
+Grafik in ein Gemege aus Textzeichen umzuwandeln, das der urspr&uuml;nglichen
+Grafik &auml;hnelt, so da&szlig; auch auf nicht grafikf&auml;higen Endger&auml;ten
+eine Darstellung m&ouml;glich ist.</li>
+
+<li>
+&uuml;ber das neue Framebuffer-Device (/dev/fbcon) der neuen 2.2.x - Kernel,
+das endlich gro&szlig;e Hardwaren&auml;he und entsprechende Leistung verspricht</li>
+
+<li>
+in eine Datei. Auf diese Weise k&ouml;nnen auf einfachstem Wege Screenshots
+und Screen-Filme (!) erzeugt werden.</li>
+
+<li>
+...</li>
+<</blockquote>
+Diese Ziele der Grafikdarstellung nennt GGI "Targets". Targets k&ouml;nnen
+auch verkn&uuml;pft werden (Beispiel: Ausgabe erfolgt gleichzeitig auf
+Bildschirm und in Datei); es lassen sich Farbfilter zwischenschalten, die
+Bilder auf andere Aufl&ouml;sungen oder Farbtiefe umrechnen.
+<br>Dasselbe Programm kann so ohne Umst&auml;nde auf der Konsole oder unter
+X betrieben werden.
+<p>Zu guter Letzt enth&auml;lt GGI auch noch eine Architektur f&uuml;r
+Eingabeger&auml;te, die <tt>libgii </tt>(General Input Interface).
+<p>GGI hat derzeit die letzten Phasen vor dem Release der zweiten Version
+mit dem Codenamen "Degas" erreicht. Die Entwickler raten von der Benutzung
+der Vorg&auml;ngerversion ab, deshalb m&ouml;ge man sich von der <a href="www.ggi-project.org">GGI-Homepage</a>
+die frischen Quellcodes (~2,5 MB) laden, die unter "Development" zu finden
+sind.
+<h4>
+Interessante Entwicklungen:</h4>
+
+<blockquote>
+<li>
+Zahlreiche Spiele, allen voran DOOM, QUAKE und Konsorten finden f&uuml;r
+Linux endlich brauchbare Grafik.</li>
+
+<li>
+Es existiert ein XServer f&uuml;r GGI. X delegiert so die Grafikdarstellung
+an GGI&nbsp; und profitiert von dessen Vorteilen. Dies macht nicht nur
+die doppelte und dreifache Ausfertigung von Linux-"Treibern" f&uuml;r neue
+Grafikkarten &uuml;berfl&uuml;ssig (XServer, SVGALib, GGI), sondern l&auml;&szlig;t
+X auch vom Framebuffer-Device profitieren.<br>
+Ein Textmodus-X ist mit dem GGI-Xserver und AA ebenfalls denkbar.</li>
+
+<li>
+<a href="www.berlin-consortium.org">Berlin</a> ist eine neuartige GUI,
+die auf GGI basiert.</li>
+</blockquote>
+
+<h2>
+</h2>
+</blockquote>
+
+<h2>
+Dave GNUkem und GGI</h2>
+
+<blockquote>Auch Dave GNUkem setzt auf GGI. Am einfachsten f&auml;llt dies
+unter X, da GGI dann selber merkt, da&szlig; das einzig sinnvolle Target
+eben X ist. Es sollte sich beim Aufruf von <b>djg</b> ein Fenster &ouml;ffnen
+mit dem Titel "GGI-on-X", und das Spiel sollte laufen.
+<br>Falls nicht, &ouml;ffne man ein <b>xterm</b> oder ein KDE Terminal
+oder ..., wechsele in das entsprechende Verzeichnis und starte das Spiel
+per Hand: <b>./djg</b>
+<br>Nun sind Fehler- und Debughinweise sichtbar.
+<p>Die zwei h&auml;ufigsten Fehler:
+<ol>
+<li>
+<tt>could not load library: libggi.so.2&nbsp; File not found<br>
+</tt>(oder so:): Die GGI-Bibliotheken konnten nicht gefunden werden.<br>
+In der Datei <tt>/etc/ld.so.conf</tt> sind die Suchpfade aufgelistet, in
+denen Bibliotheken gesucht werden. GGI installiert sich meist unter <tt>/usr/local/lib</tt>.<br>
+Dieser Eintrag mu&szlig; noch mit einem Editor nachgeholt werden. Danach
+sorgt ein simpler Aufruf des Programms <tt>/sbin/ldconfig</tt> daf&uuml;r,
+da&szlig; die neuen Informationen aufbereitet und in der Datei <tt>/etc/ld.so.cache</tt>
+abgelegt werden. Nun sollten alle Programme die Bibliotheken in diesem
+Verzeichnis benutzen k&ouml;nnen.</li>
+
+<li>
+Der Grafikmodus kann nicht initialisiert werden. Dave GNUkem benutzt wie
+das Original nur 256 Farben, das entspricht einer Farbtiefe von 8 bit,
+und versucht, einen Darstellungsbereich von 320x200 Pixeln zu bekommen.<br>
+Versuchen Sie - falls es nicht automatisch beim Hochfahren gestartet wird,
+X mit startx -8bpp zu starten, andernfalls m&uuml;ssen Sie vielleicht die
+Standard-Farbtiefe in X auf 8 zu setzen. Dies k&ouml;nnen Sie per Hand
+in /etc/X11/XF86Config (Eintr&auml;ge "DefaultColorDepth") oder mit dem
+Programm XF86Config bewerkstelligen.</li>
+</ol>
+</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+Dave Gnukem v0.54e
+----------------
+
+SDL Application, compiled to OS/2 with GCC Alpha 6
+
+Requirements:
+ - Scitech SNAP
+ - DART
+
+If something goes wrong (crash, freeze, etc...), do the following:
+- Delete the c:\popuplog.os2 file
+- Start davenukem.exe this way: davenukem >stdout.txt 2>stderr.txt
+- After the crash/freeze, pack the stdout.txt stderr.txt and c:\popuplog.os2
+  files into one zip and send to me.
+
+Have a nice time playing!
+  Andreas <apetersbuv@gmx.de>
